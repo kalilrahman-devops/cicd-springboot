@@ -8,7 +8,7 @@ public class HelloController {
 
     @GetMapping("/")
     public String home() {
-        return "Hello from Kalil's DevOps Pipeline!";
+        return "Hello from Kalil's DevOps Pipeline! - Build Triggered by GitHub Webhook";
     }
 
     @GetMapping("/health")
