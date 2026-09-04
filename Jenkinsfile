@@ -57,24 +57,22 @@ pipeline {
             }
         }
 
+        stage('Verify Deployment') {
+            steps {
+                echo 'Verifying deployment...'
+                sh 'kubectl get pods'
+                sh 'kubectl get services'
+            }
+        }
+
     }
 
     post {
         success {
             echo 'Pipeline completed successfully!'
-            slackSend(
-                channel: '#jenkins-notifications',
-                color: 'good',
-                message: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' - ${env.BUILD_URL}"
-            )
         }
         failure {
             echo 'Pipeline failed!'
-            slackSend(
-                channel: '#jenkins-notifications',
-                color: 'danger',
-                message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' - ${env.BUILD_URL}"
-            )
         }
     }
 }
