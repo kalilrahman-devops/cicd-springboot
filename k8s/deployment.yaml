@@ -17,6 +17,7 @@ spec:
       containers:
       - name: spring-boot-app
         image: kalil2297/spring-boot-app:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         readinessProbe:
